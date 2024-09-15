@@ -1,6 +1,22 @@
 server:
   port: 8761
 
+spring:
+  application:
+    name: CloudServer
+
+  cloud:
+    gateway:
+      routes:
+        - id: RegistrationSystem
+          uri: lb://registration
+          predicates:
+            - Path=/team/**
+        - id: TicketSystem
+          uri: lb://ticket
+          predicates:
+            - Path=/ticket/**
+
 eureka:
   client:
     register-with-eureka: false
